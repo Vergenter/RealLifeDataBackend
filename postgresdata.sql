@@ -49,7 +49,7 @@ INSERT INTO role VALUES (2,'User');
 
 CREATE TABLE account (
   account_id serial NOT NULL,
-  account_name varchar(50) NOT NULL,
+  account_name varchar(50) NOT NULL UNIQUE,
   hash varchar(50) NOT NULL,
   entry_id int NOT NULL,
   role_id smallint NOT NULL,
