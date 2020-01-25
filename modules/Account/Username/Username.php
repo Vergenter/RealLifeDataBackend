@@ -12,17 +12,19 @@ class Username implements IModule{
         return [];
     }
 
-    public function callMethod($name){
+    public function callMethod($name) :int{
         switch($name){
             case 'HEAD':
-                $this->headMethod();
-                break;
+                return $this->headMethod();
             default:
-                break;
+                return 405;
         }
     }
     private function headMethod(){
-        http_response_code((new AccountRepository())->AccountExist($this->Name)?200:404);
+        return (new AccountRepository())->AccountExist($this->Name)?
+        200:
+        404;
+  
     }
 
 }

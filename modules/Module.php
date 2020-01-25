@@ -1,5 +1,5 @@
 <?php
 interface IModule{
     public function getChild($childName);
-    public function callMethod($methodType);
+    public function callMethod($methodType): int;
 }

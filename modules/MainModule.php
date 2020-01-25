@@ -14,6 +14,7 @@ class MainModule implements IModule{
                 return [];
         }
     }
-    public function callMethod($name){
+    public function callMethod($name) :int{
+        return 405;
     }
 }

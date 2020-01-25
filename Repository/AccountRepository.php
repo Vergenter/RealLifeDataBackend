@@ -15,4 +15,17 @@ class AccountRepository extends Repository {
 
         return !!$res;
     }
+    public function CreateNewAccount(string $username,string $hash,string $date)  {
+        $stmt = $this->database->connect()->prepare('
+        call createUserAccount(:username,:hash,:date)
+        ');
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':hash', $hash, PDO::PARAM_STR);
+        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        try{
+        return $stmt->execute();
+        } catch(PDOException $ex){
+            return false;
+        }
+    }
 }
