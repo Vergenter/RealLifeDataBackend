@@ -119,3 +119,21 @@ BEGIN
    return num::numeric;
 END;
 $result$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE PROCEDURE createUserAccount(varchar(50),varchar(60),date)
+LANGUAGE plpgsql    
+AS $$
+BEGIN 
+  SET TRANSACTION ISOLATION LEVEL Read committed;
+	with ta as (
+		INSERT INTO entry (entry_type_id,entry_name,description) 
+		VALUES (1,'ROOT',NULL)
+		RETURNING entry_id
+	)	
+	INSERT INTO account (account_name,hash,birth,entry_id,role_id)
+    VALUES ($1,$2,$3,(select entry_id from ta),2);
+END;
+$$;
+
+call createUserAccount('XXXDESTROIERXXX','somehash','2017-03-14');
