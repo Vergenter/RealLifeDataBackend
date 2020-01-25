@@ -2,6 +2,7 @@
 include __DIR__.'//PermissionGetter//GetPermissions.php';
 include __DIR__.'//PermissionChecker//PermissionChecker.php';
 include 'router.php';
+require __DIR__.'//vendor//autoload.php';
 
 function setAndReturnResponseCode($code){
   http_response_code($code);

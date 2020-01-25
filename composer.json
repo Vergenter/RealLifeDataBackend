@@ -1,0 +1,12 @@
+{
+    "name": "ja/real-life-data-backend",
+    "authors": [
+        {
+            "name": "Vergenter",
+            "email": "okolok1998@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^5.0"
+    }
+}
