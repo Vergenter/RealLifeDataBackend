@@ -23,9 +23,10 @@ class AccountRepository extends Repository {
         $stmt->bindParam(':hash', $hash, PDO::PARAM_STR);
         $stmt->bindParam(':date', $date, PDO::PARAM_STR);
         try{
-        return $stmt->execute();
+            $stmt->execute();
+        return 0;
         } catch(PDOException $ex){
-            return false;
+            return $ex->getCode();
         }
     }
 }
