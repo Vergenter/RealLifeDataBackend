@@ -136,4 +136,19 @@ BEGIN
 END;
 $$;
 
+CREATE OR REPLACE PROCEDURE createObject(varchar(50),varchar(50),int)
+LANGUAGE plpgsql    
+AS $$
+BEGIN 
+  SET TRANSACTION ISOLATION LEVEL Read committed;
+	with ta as (
+		INSERT INTO entry (entry_type_id,entry_name,description) 
+		VALUES (1,$1,$2)
+		RETURNING entry_id
+	)	
+	INSERT INTO relation (parent_id,child_id)
+    VALUES ($3,(select entry_id from ta));
+END;
+$$;
+
 call createUserAccount('XXXDESTROIERXXX','somehash','2017-03-14');

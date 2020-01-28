@@ -2,7 +2,7 @@
 require_once 'Module.php';
 require_once __DIR__.'//Token//Token.php';
 require_once __DIR__.'//Account//Account.php';
-
+require_once __DIR__.'//UserId//UserId.php';
 class MainModule implements IModule{
     public function getChild($name){
         switch($name){
@@ -11,7 +11,7 @@ class MainModule implements IModule{
             case 'Token':
                 return [new Token()];
             default:
-                return [];
+                return [new UserId($name)];
         }
     }
     public function callMethod($name) :int{
